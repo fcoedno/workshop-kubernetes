@@ -1,7 +1,8 @@
 FROM gradle:jdk11 as builder
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN ./gradlew clean && \
+RUN gradle wrapper && \
+    ./gradlew clean && \
     ./gradlew build
 
 FROM openjdk:11.0.2-jre-stretch
